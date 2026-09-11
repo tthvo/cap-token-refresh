@@ -1,0 +1,8 @@
+# To find the CLI image, run: oc adm release info --image-for=cli <release-payload-image>
+# The current one is taken from quay.io/openshift-release-dev/ocp-release:5.0.0-rc.2-multi
+FROM quay.io/openshift-release-dev/ocp-v5.0-art-dev@sha256:6525b8d626eeae1aa226ded9157cee8704c79bc30927c8ec16e41a7c296bd83e
+ARG TARGETARCH
+RUN curl -fsSL -o /usr/bin/jq \
+      "https://github.com/jqlang/jq/releases/download/jq-1.8.2/jq-linux-${TARGETARCH}" \
+      && chmod +x /usr/bin/jq \
+      && jq --version
